@@ -1,17 +1,8 @@
-loadEnv(process.env.APP_ENV);
+const deploymentEnv = process.env.APP_ENV || 'development';
+const environment = require(`./.env.${deploymentEnv}.js`);
 
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  env: environment,
 };
-
-function loadEnv(appEnv = "production") {
-  const env = {
-    ...require(`./.env/env.${appEnv}`),
-    NEXT_PUBLIC_APP_ENV: appEnv,
-  };
-
-  Object.entries(env).forEach(([key, value]) => {
-    process.env[key] = value;
-  });
-}
