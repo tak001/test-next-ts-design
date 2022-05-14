@@ -4,6 +4,7 @@ import { Id } from '@/domain/models/users/vo';
 
 class UserUseCase {
   async findAll(): Promise<User[]> {
+    // facadeにする
     const useCase = di.getInstance('fetchAll');
     const result = await useCase.execute();
     return result;
