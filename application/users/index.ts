@@ -1,17 +1,16 @@
-import di from '@/di';
 import { User } from '@/domain/models/users/user';
 import { Id } from '@/domain/models/users/vo';
+import factory from './factory';
 
 class UserUseCase {
   async findAll(): Promise<User[]> {
-    // facadeにする
-    const useCase = di.getInstance('fetchAll');
+    const useCase = factory.findAll;
     const result = await useCase.execute();
     return result;
   }
 
   async find(id: Id): Promise<User> {
-    const useCase = di.getInstance('fetch');
+    const useCase = factory.find;
     const result = await useCase.execute(id);
     return result;
   }
