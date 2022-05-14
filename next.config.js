@@ -5,4 +5,12 @@ const environment = require(`./.env.${deploymentEnv}.js`);
 module.exports = {
   reactStrictMode: true,
   env: environment,
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${environment.API_URL}/api/:path*`,
+      },
+    ];
+  },
 };
