@@ -21,15 +21,15 @@ export class User {
     return this._mailAddress;
   }
 
-  hasId(): boolean {
+  existsId(): boolean {
     return !isEmpty(this._id);
   }
 
-  hasName(): boolean {
+  existsName(): boolean {
     return !isEmpty(this._name);
   }
 
-  hasMailAddress(): boolean {
+  existsMailAddress(): boolean {
     return !isEmpty(this._name);
   }
 }
