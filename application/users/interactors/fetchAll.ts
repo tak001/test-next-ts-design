@@ -5,7 +5,10 @@ import IUserRepository from '@/interfaces/repository/user/IUserRepository';
 export class FetchAll implements IFetchAll {
   constructor(private readonly userRepository: IUserRepository) {}
 
-  execute(): Promise<User[]> {
-    return this.userRepository.fetchAll();
+  async execute(): Promise<User[]> {
+    const users = await this.userRepository.fetchAll();
+    return users.map((user) => {
+      return new User(user.id, user.name, user.mailAddress);
+    });
   }
 }
