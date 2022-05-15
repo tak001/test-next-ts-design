@@ -4,7 +4,7 @@
 - local server: yarn serve
 
 # 設計指針
-(https://user-images.githubusercontent.com/36849614/168453061-c30ad4cc-c2a5-4cf2-a6ad-ecf7b727c52b.png)
+<img src="https://user-images.githubusercontent.com/36849614/168453113-edaa7bbf-ca6a-4f53-b55a-030d1ea6a156.png" alt="image" style="max-width: 100%;">
 
 - Clean Architecture を参考にレイヤー構築を検討する
 - 厳密ではなく、開発速度と保守性の高いコードの両立を目指す
