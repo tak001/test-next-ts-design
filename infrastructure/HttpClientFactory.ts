@@ -3,7 +3,6 @@ import { mockClient } from '@/infrastructure/provider/mockClient';
 
 class HttpClientFactory {
   getClient() {
-    console.log('factory', process.env.APP_ENV);
     if (process.env.APP_ENV === 'local') {
       return mockClient;
     }
