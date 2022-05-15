@@ -4,6 +4,7 @@
 - local server: yarn serve
 
 # 設計指針
+
 <img src="https://user-images.githubusercontent.com/36849614/168453113-edaa7bbf-ca6a-4f53-b55a-030d1ea6a156.png" alt="image" style="max-width: 100%;">
 
 - Clean Architecture を参考にレイヤー構築を検討する
