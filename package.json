@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "local": "cross-env APP_ENV=local next dev",
+    "local": "cross-env APP_ENV=local next dev & yarn mock:api",
     "serve": "cross-env APP_ENV=development next dev",
     "build": "next build",
     "start": "next start",
@@ -18,9 +18,11 @@
     "proxy": "^1.0.2",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-hook-form": "^7.31.1"
+    "react-hook-form": "^7.31.1",
+    "sass": "^1.51.0"
   },
   "devDependencies": {
+    "@types/express": "^4.17.13",
     "@types/lodash": "^4.14.182",
     "@types/node": "17.0.33",
     "@types/react": "18.0.9",

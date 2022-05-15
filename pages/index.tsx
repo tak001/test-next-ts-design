@@ -1,14 +1,7 @@
-import Link from 'next/link';
+import TopTemplate from '@/components/templates/top';
 
 const Index = () => {
-  return (
-    <>
-      <div>{process.env.API_URL}</div>
-      <Link href="/user">
-        <a>to User</a>
-      </Link>
-    </>
-  );
+  return <TopTemplate />;
 };
 
 export default Index;

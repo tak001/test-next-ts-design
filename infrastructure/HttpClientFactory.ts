@@ -3,13 +3,14 @@ import { mockClient } from '@/infrastructure/provider/mockClient';
 
 class HttpClientFactory {
   getClient() {
-    if (process.env.NEXT_PUBLIC_APP_ENV === 'local') {
+    console.log('factory', process.env.APP_ENV);
+    if (process.env.APP_ENV === 'local') {
       return mockClient;
     }
-    if (process.env.NEXT_PUBLIC_APP_ENV === 'develop') {
+    if (process.env.APP_ENV === 'develop') {
       return prodClient;
     }
-    if (process.env.NEXT_PUBLIC_APP_ENV === 'production') {
+    if (process.env.APP_ENV === 'production') {
       return prodClient;
     }
     return prodClient;
