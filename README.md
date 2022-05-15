@@ -1,34 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# run
 
-## Getting Started
+- mock: yarn local
+- local server: yarn serve
 
-First, run the development server:
+# 設計指針
+https://user-images.githubusercontent.com/36849614/168453061-c30ad4cc-c2a5-4cf2-a6ad-ecf7b727c52b.png
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+- Clean Architecture を参考にレイヤー構築を検討する
+- 厳密ではなく、開発速度と保守性の高いコードの両立を目指す
+- レイヤーは上位のみに向ける
+  - domain は最上位レイヤー
+  - View / DB は最下位レイヤー
+  - 下位レイヤーへの参照は、上位レイヤーを保護するために抽象へ依存させる
+- React / Next 依存による制限的な記述は許容する
+- domain 層に知識を集約させて、使用側は知識を持たないようにする
+  - 使う側に知識があると知識が分散されるため、修正漏れ等のリスクがあるため
+- View層で利用する際はvoになっており、基本的にプリミティブ型(プログラミング言語が標準で持っている型)は使用しない
+  - UseCase層で、全てvoに置き換える
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# 備考
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- UI component library と Atomic Design は相性が良くないため、不採用
