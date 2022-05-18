@@ -16,4 +16,13 @@ export class UserRepository implements IUserRepository {
     const { data } = await this._client.get<User>(API + `${USERS}/${id}`);
     return data.data;
   }
+
+  fetchSWR(): { data?: User[]; error: any } {
+    const { data, error } = this._client.useSwr<User[]>(API + USERS);
+
+    return {
+      data,
+      error,
+    };
+  }
 }

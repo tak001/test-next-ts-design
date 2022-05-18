@@ -14,6 +14,12 @@ class UserUseCase {
     const result = await useCase.execute(id);
     return result;
   }
+
+  findSWR(): { data?: User[]; error: any } {
+    const useCase = facade.findSWR;
+    const result = useCase.execute();
+    return result;
+  }
 }
 
 const userUseCase = new UserUseCase();

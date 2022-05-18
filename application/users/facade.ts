@@ -1,4 +1,4 @@
-import { Fetch, FetchAll } from './interactors';
+import { Fetch, FetchAll, FetchSWR } from './interactors';
 import httpClientFactory from '@/infrastructure/HttpClientFactory';
 import IClient from '@/infrastructure/provider/IClient';
 import { UserRepository } from '@/interfaces/repository/user';
@@ -6,6 +6,7 @@ import { UserRepository } from '@/interfaces/repository/user';
 class UserFactory {
   private _findAll?: FetchAll;
   private _find?: Fetch;
+  private _findSWR?: FetchSWR;
 
   constructor(private readonly _client: IClient) {}
 
@@ -25,6 +26,15 @@ class UserFactory {
     }
 
     return this._find;
+  }
+
+  get findSWR() {
+    if (!this._findSWR) {
+      const repository = new UserRepository(this._client);
+      this._findSWR = new FetchSWR(repository);
+    }
+
+    return this._findSWR;
   }
 }
 

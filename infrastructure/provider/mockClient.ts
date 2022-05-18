@@ -1,5 +1,7 @@
 /* eslint-disable import/no-absolute-path */
 import { AxiosRequestConfig } from 'axios';
+import useSWR, { SWRResponse, Key, Fetcher } from 'swr';
+import { PublicConfiguration } from 'swr/dist/types';
 import { USERS } from '@/infrastructure/Path';
 import axiosBase from '@/infrastructure/provider/axiosBase';
 import IClient from '@/infrastructure/provider/IClient';
@@ -84,6 +86,25 @@ class MockClient implements IClient {
 
     return axiosBase.delete(path, config);
   }
+
+  // TODO: 整備
+  useSwr = (
+    key: Key,
+    _fetcher?: Fetcher,
+    config?: PublicConfiguration,
+  ): SWRResponse<any, any> => {
+    const lastPath = typeof key === 'string' ? key.split('/').pop() : '';
+    const target = getTarget(lastPath);
+
+    if (target.length !== 0) {
+      return target[0].value;
+    }
+
+    const fetcher = <T>(path: string, queryParams = ''): Promise<T> =>
+      axiosBase.get(`${path}${queryParams}`).then((response) => response.data);
+
+    return useSWR(key, fetcher, { ...config });
+  };
 }
 
 export const mockClient = new MockClient();
