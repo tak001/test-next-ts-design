@@ -6,6 +6,7 @@ interface Props {
   users?: User[];
 }
 
+// TODO: きっちりしたAtomic designにする
 const UserIndexOrganism = ({ users }: Props) => {
   return (
     <>
