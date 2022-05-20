@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "local": "cross-env APP_ENV=local next dev & yarn mock:api",
+    "local": "cross-env APP_ENV=local next dev",
     "serve": "cross-env APP_ENV=development next dev",
     "build": "next build",
     "start": "next start",

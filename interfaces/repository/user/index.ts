@@ -3,6 +3,7 @@ import { Id } from '@/domain/models/users/vo';
 import { API, USERS } from '@/infrastructure/Path';
 import IClient from '@/infrastructure/provider/IClient';
 import IUserRepository from '@/interfaces/repository/user/IUserRepository';
+import { UserResponse } from './type';
 
 export class UserRepository implements IUserRepository {
   constructor(private readonly _client: IClient) {}
@@ -18,10 +19,10 @@ export class UserRepository implements IUserRepository {
   }
 
   fetchSWR(): { data?: User[]; error: any } {
-    const { data, error } = this._client.useSwr<User[]>(API + USERS);
+    const { data, error } = this._client.useSwr<UserResponse>(API + USERS);
 
     return {
-      data,
+      data: data?.data,
       error,
     };
   }

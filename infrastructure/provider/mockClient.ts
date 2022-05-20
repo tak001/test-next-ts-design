@@ -92,16 +92,19 @@ class MockClient implements IClient {
     key: Key,
     _fetcher?: Fetcher,
     config?: PublicConfiguration,
-  ): SWRResponse<any, any> => {
+  ): any => {
     const lastPath = typeof key === 'string' ? key.split('/').pop() : '';
     const target = getTarget(lastPath);
 
+    // MEMO: SWRではないけど仕方なし
     if (target.length !== 0) {
       return target[0].value;
     }
 
     const fetcher = <T>(path: string, queryParams = ''): Promise<T> =>
-      axiosBase.get(`${path}${queryParams}`).then((response) => response.data);
+      axiosBase
+        .get(`${path}${queryParams}`)
+        .then((_response) => target[0].value);
 
     return useSWR(key, fetcher, { ...config });
   };

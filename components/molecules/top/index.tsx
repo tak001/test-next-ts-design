@@ -16,6 +16,7 @@ const TopMolecule = () => {
       <PageTitleText title={'Home'} />
       {apiUrlNode}
       <LinkButton text="to User" href="/users" />
+      <LinkButton text="to SWR" href="/users/swr" />
     </>
   );
 };
