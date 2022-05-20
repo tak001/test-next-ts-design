@@ -87,24 +87,23 @@ class MockClient implements IClient {
     return axiosBase.delete(path, config);
   }
 
-  // TODO: 整備
-  useSwr = (
-    key: Key,
-    _fetcher?: Fetcher,
-    config?: PublicConfiguration,
-  ): SWRResponse<any, any> => {
-    const lastPath = typeof key === 'string' ? key.split('/').pop() : '';
-    const target = getTarget(lastPath);
+  // useSwr = (
+  //   key: Key,
+  //   _fetcher?: Fetcher,
+  //   config?: PublicConfiguration,
+  // ): SWRResponse<any, any> => {
+  //   const lastPath = typeof key === 'string' ? key.split('/').pop() : '';
+  //   const target = getTarget(lastPath);
 
-    if (target.length !== 0) {
-      return target[0].value;
-    }
+  //   if (target.length !== 0) {
+  //     return target[0].value;
+  //   }
 
-    const fetcher = <T>(path: string, queryParams = ''): Promise<T> =>
-      axiosBase.get(`${path}${queryParams}`).then((response) => response.data);
+  //   const fetcher = <T>(path: string, queryParams = ''): Promise<T> =>
+  //     axiosBase.get(`${path}${queryParams}`).then((response) => response.data);
 
-    return useSWR(key, fetcher, { ...config });
-  };
+  //   return useSWR(key, fetcher, { ...config });
+  // };
 }
 
 export const mockClient = new MockClient();

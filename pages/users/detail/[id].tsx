@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import userUseCase from '@/application/users';
+import { userUseCase } from '@/application/users';
 import { User } from '@/domain/models/users/user';
 
 const UserDetail = () => {
@@ -11,7 +11,7 @@ const UserDetail = () => {
 
   useEffect(() => {
     const fetchFunction = async () => {
-      const user = await userUseCase.find(Number(id));
+      const user = await userUseCase.fetch(Number(id));
       setUser(user);
     };
     fetchFunction();

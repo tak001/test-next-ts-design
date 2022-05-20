@@ -1,22 +1,15 @@
 import { useState } from 'react';
-import userUseCase from '@/application/users';
+import { userUseCase } from '@/application/users';
 import { User } from '@/domain/models/users/user';
 import UserIndexTemplate from '@/components/templates/users';
 
 const UserIndex = () => {
-  const [users, setUsers] = useState<User[]>();
-
-  const handleClick = () => {
-    const { data } = userUseCase.findSWR();
-    setUsers(data);
-  };
+  // const [users, setUsers] = useState<User[]>();
+  const { data } = userUseCase.useFetchUser();
 
   return (
     <>
-      <UserIndexTemplate users={users} />
-      <div>
-        <button onClick={handleClick}>FetchSWR</button>
-      </div>
+      <UserIndexTemplate users={data} />
     </>
   );
 };

@@ -16,6 +16,6 @@ class HttpClientFactory {
   }
 }
 
-const httpClientFactory = new HttpClientFactory();
+export const httpClientFactory = new HttpClientFactory();
 
 export default httpClientFactory;

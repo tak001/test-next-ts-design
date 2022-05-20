@@ -1,6 +1,6 @@
 import { AxiosPromise, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { SWRResponse, Key, Fetcher } from 'swr';
-import { PublicConfiguration } from 'swr/dist/types';
+// import { SWRResponse, Key, Fetcher } from 'swr';
+// import { PublicConfiguration } from 'swr/dist/types';
 
 export default interface IClient {
   post<T = any, R = AxiosResponse<T>>(
@@ -25,9 +25,9 @@ export default interface IClient {
     config?: AxiosRequestConfig,
   ): AxiosPromise<R>;
 
-  useSwr<T = any>(
-    key: Key,
-    fetcher?: Fetcher,
-    config?: PublicConfiguration,
-  ): SWRResponse<T, any>;
+  // useSwr<T = any>(
+  //   key: Key,
+  //   fetcher?: Fetcher,
+  //   config?: PublicConfiguration,
+  // ): SWRResponse<T, any>;
 }

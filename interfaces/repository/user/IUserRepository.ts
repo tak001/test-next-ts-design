@@ -6,5 +6,5 @@ export default interface IUserRepository {
   fetch(id: Id): Promise<User>;
   // MEMO: for Operation check
   // TODO: Response type の interface をtypeへ定義する
-  fetchSWR(): { data?: User[]; error: any };
+  useFetchUser(): { data?: User[]; error: any };
 }
