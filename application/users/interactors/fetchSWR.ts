@@ -1,6 +1,5 @@
 import { IFetchSWR } from '@/application/users/useCase';
 import { User } from '@/domain/models/users/user';
-import { Id } from '@/domain/models/users/vo';
 import IUserRepository from '@/interfaces/repository/user/IUserRepository';
 
 export class FetchSWR implements IFetchSWR {
