@@ -38,6 +38,6 @@ class UserFactory {
   }
 }
 
-const factory = new UserFactory(httpClientFactory.getClient());
+const facade = new UserFactory(httpClientFactory.getClient());
 
-export default factory;
+export default facade;
