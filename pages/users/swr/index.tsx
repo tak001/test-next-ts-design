@@ -2,7 +2,7 @@ import userUseCase from '@/application/users';
 import UserIndexTemplate from '@/components/templates/users';
 
 const UserIndex = () => {
-  const { data } = userUseCase.findSWR();
+  const { data } = userUseCase.fetchSWR();
 
   return (
     <>

@@ -6,7 +6,7 @@ import { UserRepository } from '@/interfaces/repository/user';
 class UserFactory {
   private _findAll?: FetchAll;
   private _find?: Fetch;
-  private _findSWR?: FetchSWR;
+  private _fetchSWR?: FetchSWR;
 
   constructor(private readonly _client: IClient) {}
 
@@ -28,13 +28,13 @@ class UserFactory {
     return this._find;
   }
 
-  get findSWR() {
-    if (!this._findSWR) {
+  get fetchSWR() {
+    if (!this._fetchSWR) {
       const repository = new UserRepository(this._client);
-      this._findSWR = new FetchSWR(repository);
+      this._fetchSWR = new FetchSWR(repository);
     }
 
-    return this._findSWR;
+    return this._fetchSWR;
   }
 }
 

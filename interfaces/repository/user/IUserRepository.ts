@@ -1,10 +1,9 @@
 import { User } from '@/domain/models/users/user';
 import { Id } from '@/domain/models/users/vo';
+import { SwrResponse } from '@/application/types';
 
 export default interface IUserRepository {
   fetchAll(): Promise<User[]>;
   fetch(id: Id): Promise<User>;
-  // MEMO: for Operation check
-  // TODO: Response type の interface をtypeへ定義する
-  fetchSWR(): { data?: User[]; error: any };
+  fetchSWR(): SwrResponse<User[]>;
 }

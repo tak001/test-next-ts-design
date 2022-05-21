@@ -1,5 +1,6 @@
 import { User } from '@/domain/models/users/user';
 import { Id } from '@/domain/models/users/vo';
+import { SwrResponse } from '@/application/types';
 import facade from './facade';
 
 class UserUseCase {
@@ -15,8 +16,8 @@ class UserUseCase {
     return result;
   }
 
-  findSWR(): { data?: User[]; error: any } {
-    const useCase = facade.findSWR;
+  fetchSWR(): SwrResponse<User[]> {
+    const useCase = facade.fetchSWR;
     const result = useCase.execute();
     return result;
   }
