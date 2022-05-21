@@ -1,6 +1,6 @@
 /* eslint-disable import/no-absolute-path */
 import { AxiosRequestConfig } from 'axios';
-import useSWR, { SWRResponse, Key, Fetcher } from 'swr';
+import { Key, Fetcher } from 'swr';
 import { PublicConfiguration } from 'swr/dist/types';
 import { USERS } from '@/infrastructure/Path';
 import axiosBase from '@/infrastructure/provider/axiosBase';
@@ -23,7 +23,7 @@ const mockPaths = [
   },
 ];
 
-const getTarget = (path: string | undefined) => {
+const getTarget = (path?: string) => {
   return mockPaths.filter((item) => item.path === path);
 };
 
@@ -57,18 +57,22 @@ class MockClient implements IClient {
 
   // TODO: 整備
   get(path: string, config?: AxiosRequestConfig): Promise<any> {
-    const matchedId = path.match(/\d+$/);
-    const lastPath = matchedId
-      ? path.split('/').splice(2, 1)[0]
-      : path.split('/').pop();
+    // FIXME:
+    const splitPath = path.split('/');
+    const existRootParams = splitPath.length > 3;
+    const rootParams = existRootParams ? splitPath.slice(-1)[0] : '';
+
+    const lastPath = existRootParams
+      ? splitPath.splice(2, 1)[0]
+      : splitPath.pop();
     const target = getTarget(lastPath);
 
     if (target.length === 0) {
       return axiosBase.get(path, config);
     }
 
-    if (matchedId) {
-      const id = matchedId ? Number(matchedId[0]) : 0;
+    if (rootParams) {
+      const id = rootParams ? Number(rootParams) : 0;
       const obj = target[0].value.data.find((item: any) => item.id === id);
       return wrapPromise({ data: obj });
     }
@@ -91,22 +95,15 @@ class MockClient implements IClient {
   useSwr = (
     key: Key,
     _fetcher?: Fetcher,
-    config?: PublicConfiguration,
+    _config?: PublicConfiguration,
   ): any => {
     const lastPath = typeof key === 'string' ? key.split('/').pop() : '';
     const target = getTarget(lastPath);
 
-    // MEMO: SWRではないけど仕方なし
+    // MEMO: SWRではないけど仕方なし、挙動が実際とは違うので注意
     if (target.length !== 0) {
       return target[0].value;
     }
-
-    const fetcher = <T>(path: string, queryParams = ''): Promise<T> =>
-      axiosBase
-        .get(`${path}${queryParams}`)
-        .then((_response) => target[0].value);
-
-    return useSWR(key, fetcher, { ...config });
   };
 }
 
