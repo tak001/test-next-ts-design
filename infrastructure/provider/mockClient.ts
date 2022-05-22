@@ -102,7 +102,7 @@ class MockClient implements IClient {
 
     // MEMO: SWRではないけど仕方なし、挙動が実際とは違うので注意
     if (target.length !== 0) {
-      return { data: target[0].value, error: undefined };
+      return { data: objectKeysToCamel(target[0].value), error: undefined };
     }
   };
 }
