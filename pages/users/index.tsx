@@ -15,6 +15,7 @@ const UserIndex = () => {
   const handleClick = async () => {
     const users = await userUseCase.findAll();
     setUsers(users);
+    setStoreUsers(users);
   };
 
   const ChangeHandle = (e: string) => {
