@@ -1,8 +1,8 @@
 import { useRecoilState } from 'recoil';
-import { usersState } from '@/store/users/usersAtom';
+import { usersSelector } from '@/store/users/usersSelector';
 
 export const RecoilTest = () => {
-  const [storeUsers] = useRecoilState(usersState);
+  const [storeUsers] = useRecoilState(usersSelector);
 
   const getRandomInt = () => {
     return Math.random();

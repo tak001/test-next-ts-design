@@ -1,6 +1,6 @@
 import { selector } from 'recoil';
 import { User } from '@/domain/models/users/user';
-// import userUseCase from '@/application/users';
+import userUseCase from '@/application/users';
 import { usersState } from './usersAtom';
 
 export const usersSelector = selector<User[]>({
@@ -10,7 +10,11 @@ export const usersSelector = selector<User[]>({
   //   const response = await userUseCase.findAll();
   //   return response;
   // },
-  get: async ({ get }) => {
-    return get(usersState);
+  get: async () => {
+    const response = await userUseCase.findAll();
+    return response;
+  },
+  set: ({ set }, newValue) => {
+    set(usersState, newValue);
   },
 });
