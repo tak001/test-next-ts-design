@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
-import DefaultLayout from '@/layouts/Default';
+import DefaultLayout from '@/layouts/default';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
