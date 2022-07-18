@@ -1,7 +1,5 @@
 import Head from 'next/head';
 import { ReactNode } from 'react';
-import { useRecoilState } from 'recoil';
-import { usersState } from '@/store/users/usersAtom';
 import styles from './default.module.scss';
 
 interface Props {
@@ -9,7 +7,7 @@ interface Props {
 }
 
 const DefaultLayout = ({ children }: Props) => {
-  const [storeUsers, setStoreUsers] = useRecoilState(usersState);
+  // const [storeUsers, setStoreUsers] = useRecoilState(usersSelector);
 
   const getRandomInt = () => {
     return Math.random();
@@ -23,7 +21,7 @@ const DefaultLayout = ({ children }: Props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div suppressHydrationWarning>Header {getRandomInt()}</div>
-      {storeUsers.length > 0 && <p>{storeUsers[0].name}</p>}
+      {/* {storeUsers.length > 0 && <p>{storeUsers[0].name}</p>} */}
 
       <main className={styles.main}>{children}</main>
       <footer>footer</footer>

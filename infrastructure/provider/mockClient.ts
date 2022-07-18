@@ -2,7 +2,7 @@
 import { AxiosRequestConfig } from 'axios';
 import { Key, Fetcher } from 'swr';
 import { PublicConfiguration } from 'swr/dist/types';
-import { USERS } from '@/infrastructure/Path';
+import { USERS, TODO } from '@/infrastructure/Path';
 import axiosBase from '@/infrastructure/provider/axiosBase';
 import IClient from '@/infrastructure/provider/IClient';
 import { objectKeysToCamel } from '@/utils/changeCase';
@@ -20,6 +20,10 @@ const mockPaths = [
   {
     path: USERS,
     value: require('@/infrastructure/mock/data/users/get/all.ts').default,
+  },
+  {
+    path: TODO,
+    value: require('@/infrastructure/mock/data/todo/get/all.ts').default,
   },
 ];
 
